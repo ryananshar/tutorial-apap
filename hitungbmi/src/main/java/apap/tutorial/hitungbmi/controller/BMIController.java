@@ -24,8 +24,16 @@ public class BMIController {
         return "HitungBMIPage.html";
     }
 
-    @GetMapping(value = "/hitung-bmi/{height}/{weight}")
+    @GetMapping(value = "/hitung-bmi")
     public String hitungBMIWithRequestParam(
+            @RequestParam(value = "height") Optional<Double> height,
+            @RequestParam(value = "weight") Optional<Double> weight,
+            Model model ) {
+        return getHitungBMIPage(weight, height, model);
+    }
+
+    @GetMapping(value = "/hitung-bmi/{height}/{weight}")
+    public String hitungBMIWithPathVariable(
             @PathVariable(value = "height") Optional<Double> height,
             @PathVariable(value = "weight") Optional<Double> weight,
             Model model ) {
