@@ -41,3 +41,9 @@ Penggunaan beberap dependency pada framework springboot.
 ### What I did not understand
 - [ ] Kenapa harus menggunakan Spring Framework
 - [ ] Pengaplikasian model MVC masih belum mengerti
+
+## Tutorial 2
+1. Cobalah untuk menambahkan sebuah resep dengan mengakses link berikut:
+http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20F
+asilkom&catatan=Semangat
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
