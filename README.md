@@ -46,4 +46,28 @@ Penggunaan beberap dependency pada framework springboot.
 1. Cobalah untuk menambahkan sebuah resep dengan mengakses link berikut:
 http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20F
 asilkom&catatan=Semangat
-Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi!
+
+-Hal tersebut bisa terjadi karena view yang disematkan pada Controller“add-resep” belum ada dan dibuat.
+
+2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat  
+
+- @Autowired merupakan peng-implementation dari konsep IoC. @Autowired ini digunakan untuk memasukan variable dari ResepService ke controller.
+
+3. Cobalah untuk menambahkan sebuah resep dengan mengakses link berikut: 
+
+http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20Fasilkom 
+
+*Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi*
+
+-Karena tidak semua parameter dipenuhi dan diisi, yaitu catatan.
+
+4. Jika Papa APAP ingin melihat resep untuk pasien yang bernama Quanta, link apa yang harus diakses? 
+
+http://localhost:8080/resep/view/?noResep=1
+
+5. Tambahkan 1 contoh resep lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/resep/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu. 
+
+http://localhost:8080/resep/add?noResep=3&namaDokter=Kinta&namaPasien=Andin&catatan=Semoga%20bisa%20survive
+
+[Image ScreenShot](https://ibb.co/wYLWYsR)
