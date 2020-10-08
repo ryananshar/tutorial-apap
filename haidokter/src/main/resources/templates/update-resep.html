@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <title>Update Resep</title>
+    </head>
+    <body>
+        <h2>Perubahan Catatan Resep</h2>           
+        <h3 th:text="'Nomor Resep: ' + ${resep.getNoResep()}"></h3>
+        <h3 th:text="'Catatan Baru: ' + ${resep.getCatatan()}"></h3>
+        <h3>Selamat, catatan resep anda berhasil diganti</h3>
+        <a href="/resep/viewall">Kembali</a>
+    </body>
+</html>
