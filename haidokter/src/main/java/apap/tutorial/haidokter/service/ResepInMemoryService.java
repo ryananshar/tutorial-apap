@@ -23,6 +23,11 @@ public class ResepInMemoryService implements ResepService{
     public List<ResepModel> getResepList() {
         return listResep;
     }
+
+    @Override
+    public  void deleteAll() {
+        listResep.clear();
+    }
     
     //  Todo
     /*  Manfaatkan listResep sebagai searching space kamu, 

@@ -121,4 +121,21 @@ public class ResepController {
             }
             return "delete-error";
     }
+
+    // fitur delete-all
+    // Path url: http://localhost:8080/resep/delete-all 
+    @GetMapping(value = "resep/delete-all")
+    public String deleteAll(Model model) {
+        // Mendapat list resep
+        List<ResepModel> listResep = resepService.getResepList();
+
+        // Menghapus semua elemen pada list
+        listResep.clear();
+
+        // Menambah variabel listResep untuk dirender pada Thymeleaf
+        model.addAttribute("listResep", listResep);
+
+        // Return view template
+        return "delete-all";
+    }
 }

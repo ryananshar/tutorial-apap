@@ -8,7 +8,7 @@
         <h3 th:text="'Nomor Resep: ' + ${resep.getNoResep()}"></h3>
         <h3>Selamat, catatan resep anda berhasil dihapus</h3>
             <h3>Update tidak dapat dilakukan</h3>
-            <h3>Resep dengan nomor <span th:text="$noResep"></span></h3>
+            <h3>Resep dengan nomor <span th:text="${noResep}"></span></h3>
         <a href="/resep/viewall">Kembali</a>
     </body>
 </html>
