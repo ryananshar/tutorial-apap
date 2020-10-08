@@ -1,4 +1,5 @@
 package apap.tutorial.haidokter.model;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,12 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "resep")
 public class ResepModel implements Serializable {
-    // private String noResep;
-    // private String namaDokter;
-    // private String namaPasien;
-	// private String catatan;
-
 	@Id
+	@Column(name = "no_resep")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long noResep;
 	
@@ -74,6 +71,5 @@ public class ResepModel implements Serializable {
 	public void setListObat(List<ObatModel> listObat) {
 		this.listObat = listObat;
 	}
-	
 
 }

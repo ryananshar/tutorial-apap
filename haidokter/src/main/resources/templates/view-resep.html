@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-    <head>
-        <title>View Resep</title>
-    </head>
-    <body>
+<head>
+    <title>View Resep</title>
+</head>
+<body>
+    <section>
         <h2>Informasi Resep</h2>
         <h3 th:text="'Nomor Resep: ' + ${resep.getNoResep()}"></h3>
         <h3 th:text="'Nama Dokter: ' + ${resep.getNamaDokter()}"></h3>
         <h3 th:text="'Nama Pasien: ' + ${resep.getNamaPasien()}"></h3>
         <h3 th:text="'Catatan: ' + ${resep.getCatatan()}"></h3>
-        <a href="/resep/viewall">Kembali</a>
-    </body>
+
+        <td><a th:href="@{/resep/change/} + ${resep.noResep}">Change Resep</a></td>
+        
+    </section>
+    <section>
+        <h2 th:text="${title}"></h2>
+        <div th:each="obat : ${listObat}">
+            <h3 th:text="'ID Obat: ' +${obat.id}"></h3>
+            <h3 th:text="'Nama: ' +${obat.nama}"></h3>
+
+            <h3 th:if="${obat.bentuk == 0}">Bentuk: Kapsul</h3>
+            <h3 th:if="${obat.bentuk == 1}">Bentuk: Tablet</h3>
+            <h3 th:if="${obat.bentuk == 2}">Bentuk: Sirup</h3>
+
+            <h3 th:text="'Kuantitas: ' +${obat.kuantitas}"></h3>
+
+            <a th:href="@{/obat/change} + ${obat.id}">Change Obat</a>
+            <a th:href="@{/obat/change} + ${obat.id}">Delete Obat</a>
+        </div>
+        <br><br>
+        <td><a th:href="@{/obat/add} + ${resep.noResep}">Add Obat</a></td>
+    </section>
+</body>
 </html>

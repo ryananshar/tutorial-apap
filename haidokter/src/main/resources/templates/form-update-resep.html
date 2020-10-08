@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Data Resep</title>
+</head>
+<body>
+    <h2>Change Data Resep</h2>
+    <form th:action="@{/resep/change}" th:object="${resep}" method="POST">
+        <input type="hidden" th:field="*{noResep}"/>
+        Nama Dokter:<br>
+        <input type="text" name="namaDokter" th:value="*{namaDokter}"/>
+        <br>
+        Nama Pasien:<br>
+        <input type="text" name="namaPasien" th:value="*{namaPasien}"/>
+        <br>
+        Catatan:<br>
+        <input type="text" name="catatan" th:value="*{catatan}"/>
+        <br><br><br>
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+</body>
+</html>
