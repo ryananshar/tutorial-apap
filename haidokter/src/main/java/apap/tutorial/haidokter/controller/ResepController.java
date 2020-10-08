@@ -19,25 +19,25 @@ public class ResepController {
     private ResepService resepService;
 
     // Routing URL
-    @RequestMapping("/resep/add")
-    public String addResep(
-        @RequestParam(value = "noResep", required = true) String noResep,
-        @RequestParam(value = "namaDokter", required = true) String namaDokter,
-        @RequestParam(value = "namaPasien", required = true) String namaPasien,
-        @RequestParam(value = "catatan", required = true) String catatan,
-        Model model ) {
-            // Membuat objek ResepModel
-            ResepModel resep = new ResepModel(noResep, namaDokter, namaPasien, catatan);
+    // @RequestMapping("/resep/add")
+    // public String addResep(
+    //     @RequestParam(value = "noResep", required = true) Long noResep,
+    //     @RequestParam(value = "namaDokter", required = true) String namaDokter,
+    //     @RequestParam(value = "namaPasien", required = true) String namaPasien,
+    //     @RequestParam(value = "catatan", required = true) String catatan,
+    //     Model model ) {
+    //         // Membuat objek ResepModel
+    //         ResepModel resep = new ResepModel(noResep, namaDokter, namaPasien, catatan);
 
-            // Memanggil service addResep
-            resepService.addResep(resep);
+    //         // Memanggil service addResep
+    //         resepService.addResep(resep);
 
-            // Menambah variabel nomorResep untuk dirender pada Thymeleaf
-            model.addAttribute("nomorResep", noResep);
+    //         // Menambah variabel nomorResep untuk dirender pada Thymeleaf
+    //         model.addAttribute("nomorResep", noResep);
 
-            // Return view template
-            return "add-resep";
-        }
+    //         // Return view template
+    //         return "add-resep";
+    //     }
 
     @RequestMapping("/resep/viewall")
     public String listResep(Model model) {
@@ -53,7 +53,7 @@ public class ResepController {
 
     @RequestMapping("/resep/view")
     public String detailResep (
-        @RequestParam(value = "noResep") String noResep,
+        @RequestParam(value = "noResep") Long noResep,
         Model model) {
 
             // Mendapatkan ResepModel berdasarkan noResep
@@ -67,7 +67,7 @@ public class ResepController {
 
     @GetMapping(value = "resep/view/no-resep/{noResep}")
     public String detailResepPathVariable (
-        @PathVariable(value = "noResep", required = true) String noResep,
+        @PathVariable(value = "noResep", required = true) Long noResep,
         Model model) {
 
             // Mendapatkan ResepModel berdasarkan noResep
@@ -81,7 +81,7 @@ public class ResepController {
 
     @GetMapping(value = "resep/update/no-resep/{noResep}/catatan/{catatan}")
     public String updateResep (
-        @PathVariable(value = "noResep", required = true) String noResep,
+        @PathVariable(value = "noResep", required = true) Long noResep,
         @PathVariable(value = "catatan", required = true) String catatan,
         Model model) {
 
@@ -103,7 +103,7 @@ public class ResepController {
 
     @GetMapping(value = "resep/delete/no-resep/{noResep}")
     public String deleteResep (
-        @PathVariable(value = "noResep", required = true) String noResep,
+        @PathVariable(value = "noResep", required = true) Long noResep,
         Model model) {
 
             // Mendapatkan ResepModel berdasarkan noResep

@@ -24,25 +24,31 @@ public class ResepInMemoryService implements ResepService{
         return listResep;
     }
 
-    @Override
-    public  void deleteAll() {
-        listResep.clear();
-    }
+    // @Override
+    // public  void deleteAll() {
+    //     listResep.clear();
+    // }
     
     //  Todo
     /*  Manfaatkan listResep sebagai searching space kamu, 
         gunakan nomorResep sebagai kriteria untuk mencari.
     */
     @Override
-    public ResepModel getResepByNomorResep(String nomorResep) {
+    public ResepModel getResepByNomorResep(Long nomorResep) {
         ResepModel resep = new ResepModel();
         for (int i = 0; i < listResep.size(); i++) {
             ResepModel cariResep = listResep.get(i);
-            String noResep = cariResep.getNoResep();
+            Long noResep = cariResep.getNoResep();
             if (noResep.equals(nomorResep)) {
                 resep = cariResep;
             }
         }
         return resep;
+    }
+
+    @Override
+    public ResepModel updateResep(ResepModel resepModel) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
