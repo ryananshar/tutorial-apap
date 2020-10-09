@@ -4,7 +4,7 @@
         <title>Add Obat</title>
     </head>
     <body>
-        <h2 th:text="'Obat dengan nomor resep ' + ${nomorResep}
+        <h2 th:text="'Obat dengan nomor resep ' + ${obat.getResepModel().getNoResep()}
                     + ' berhasil ditambahkan.'"></h2>
         <form method="get" action="/">
             <button type="submit">Home</button>

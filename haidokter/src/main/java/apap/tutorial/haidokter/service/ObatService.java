@@ -2,7 +2,7 @@ package apap.tutorial.haidokter.service;
 
 import apap.tutorial.haidokter.model.ObatModel;
 
-import java.util.List;
+// import java.util.List;
 
 public interface ObatService {
     void addObat(ObatModel obat);
@@ -11,5 +11,5 @@ public interface ObatService {
 
     ObatModel updateObat(ObatModel obatModel);
 
-    void deleteResep(Long id);
+    void deleteObat(Long id);
 }

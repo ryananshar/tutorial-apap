@@ -29,4 +29,9 @@ public class ObatServiceImpl implements ObatService {
         obatDb.save(obat);
         return obat;
     }
+
+    @Override
+    public void deleteObat(Long id) {
+        obatDb.deleteById(id);
+    }
 }

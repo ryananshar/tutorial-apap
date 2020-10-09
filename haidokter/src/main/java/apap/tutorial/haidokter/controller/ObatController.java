@@ -41,6 +41,7 @@ public class ObatController {
         Model model
     ) {
         obatService.addObat(obat);
+        model.addAttribute("obat", obat);
         model.addAttribute("nama", obat.getNama());
 
         return "add-obat";
@@ -66,5 +67,16 @@ public class ObatController {
         model.addAttribute("obat", updatedObat);
 
         return "update-obat";
+    }
+
+    @GetMapping("/obat/delete/{id}")
+    public String deleteObat(@PathVariable Long id, Model model) {
+        ObatModel obat = obatService.getObatByID(id);
+        obatService.deleteObat(id);
+
+        model.addAttribute("obat", obat);
+        model.addAttribute("id", id);
+
+        return "delete-obat";
     }
 }
