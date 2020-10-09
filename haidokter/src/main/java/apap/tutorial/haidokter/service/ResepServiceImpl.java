@@ -3,6 +3,7 @@ package apap.tutorial.haidokter.service;
 import apap.tutorial.haidokter.model.ResepModel;
 import apap.tutorial.haidokter.repository.ResepDb;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,8 @@ public class ResepServiceImpl implements ResepService {
 
     @Override
     public List<ResepModel> getResepList() {
-        return resepDb.findAll();
+        return resepDb.findAll(Sort.by(Sort.Direction.DESC, "noResep"));
+        // return resepDb.findAll();
     }
 
     @Override

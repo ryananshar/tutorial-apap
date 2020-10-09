@@ -18,6 +18,8 @@
         <input type="text" name="catatan" th:value="*{catatan}"/>
         <br><br><br>
         <button type="submit" value="Submit">Submit</button>
+        <td><a th:href="@{/resep/view?noResep=} + ${resep.noResep}">Kembali</a></td>
     </form>
+    <td><a th:href="@{/}">Home</a></td>
 </body>
 </html>
