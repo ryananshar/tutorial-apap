@@ -91,13 +91,20 @@ public class ResepController {
         @RequestParam(value = "noResep") Long noResep,
         Model model
     ) {
-        ResepModel resep = resepService.getResepByNomorResep(noResep);
-        List<ObatModel> listObat = resep.getListObat();
+        try {
+            ResepModel resep = resepService.getResepByNomorResep(noResep);
+            List<ObatModel> listObat = resep.getListObat();
+            model.addAttribute("resep", resep);
+            model.addAttribute("listObat", listObat);
 
-        model.addAttribute("resep", resep);
-        model.addAttribute("listObat", listObat);
-
-        return "view-resep";
+            return "view-resep";
+        } catch (NoSuchElementException e) {
+            String message = "Proses pencarian tidak dilakukan karena nomor resep tidak ada.";
+            model.addAttribute("message", message);
+            
+            return "view-resep";
+        }
+                
     } 
 
     // Routing URL
