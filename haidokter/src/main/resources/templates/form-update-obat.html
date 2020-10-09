@@ -6,8 +6,11 @@
 </head>
 <body>
     <h3>Change Data Obat</h3>
-    <form th:action="@{/obat/add}" th:object="${obat}" method="POST">
-        <input type="hidden" th:field="*{resepModel}" />
+    <form th:action="@{/obat/change}" th:object="${obat}" method="POST">
+        <input type="hidden" name="id" th:value="*{id}">
+        Nomor Resep:<br>
+        <input type="text" name="resepModel" th:value="${obat.getResepModel().getNoResep()}" required>
+        <br>
         Nama:<br>
         <input type="text" name="nama" th:value="*{nama}"/>
         <br>
@@ -15,13 +18,20 @@
         <select name="bentuk" th:value="*{bentuk}">
             <option value="0" th:selected="${obat.getBentuk() == 0}">Kapsul</option>
             <option value="1" th:selected="${obat.getBentuk() == 1}">Tablet</option>
-            <option value="2" th:selected="${obat.getBentuk() == 0}">Sirup</option>
+            <option value="2" th:selected="${obat.getBentuk() == 2}">Sirup</option>
         </select>
         <br>
         Kuantitas:<br>
         <input type="number" name="kuantitas" th:value="*{kuantitas}"/>
         <br><br>
         <button type="submit" value="Submit">Submit</button>
+        <td><a th:href="@{/resep/view?noResep=} + ${obat.getResepModel().getNoResep()}">Kembali</a></td>
+    </form>
+    <form method="get" action="/">
+        <button type="submit">Home</button>
+    </form>
+    <form method="get" action="/resep/viewall">
+        <button type="submit">View All</button>
     </form>
 </body>
 </html>

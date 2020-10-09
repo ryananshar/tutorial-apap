@@ -20,6 +20,11 @@
         <button type="submit" value="Submit">Submit</button>
         <td><a th:href="@{/resep/view?noResep=} + ${resep.noResep}">Kembali</a></td>
     </form>
-    <td><a th:href="@{/}">Home</a></td>
+    <form method="get" action="/">
+        <button type="submit">Home</button>
+    </form>
+    <form method="get" action="/resep/viewall">
+        <button type="submit">View All</button>
+    </form>
 </body>
 </html>

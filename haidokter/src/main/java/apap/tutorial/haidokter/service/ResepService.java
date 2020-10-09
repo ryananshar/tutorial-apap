@@ -17,4 +17,7 @@ public interface ResepService {
 
     // Method untuk update resep
     ResepModel updateResep(ResepModel resepModel);
+
+    // Method untuk delete resep
+    void deleteResep(ResepModel resepModel) throws Exception;
 }

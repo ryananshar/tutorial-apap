@@ -36,4 +36,35 @@ public class ResepServiceImpl implements ResepService {
         resepDb.save(resep);
         return resep;
     }
+
+    @Override
+    public void deleteResep(ResepModel resep) throws Exception{
+        if (resep.getListObat().isEmpty()) {
+            resepDb.deleteById(resep.getNoResep());
+        }
+        else {
+            throw new Exception("Resep tidak bisa dihapus karena memiliki obat.");
+        }
+    }
+
+    // @GetMapping(value = "resep/delete/no-resep/{noResep}")
+    // public String deleteResep (
+    //     @PathVariable(value = "noResep", required = true) Long noResep,
+    //     Model model) {
+
+    //         // Mendapatkan ResepModel berdasarkan noResep
+    //         ResepModel resep = resepService.getResepByNomorResep(noResep);
+    //         List<ResepModel> listResep = resepService.getResepList();
+
+    //         // Mencari dan menghapus resep
+    //         for (int i = 0; i < listResep.size(); i++) {
+    //             if (listResep.get(i).getNoResep().equals(noResep)) {
+    //                 listResep.remove(i);
+    //                 model.addAttribute("noResep", noResep);
+    //                 model.addAttribute("resep", resep);
+    //                 return "delete-resep";
+    //             }
+    //         }
+    //         return "delete-error";
+    // }
 }

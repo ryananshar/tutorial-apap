@@ -11,7 +11,9 @@
         <h3 th:text="'Nama Pasien: ' + ${resep.getNamaPasien()}"></h3>
         <h3 th:text="'Catatan: ' + ${resep.getCatatan()}"></h3>
 
-        <td><a th:href="@{/resep/change/} + ${resep.noResep}">Change Resep</a></td>
+        <td><a th:href="@{/resep/change/} + ${resep.noResep}">Change Resep</a>
+            <a th:href="@{/resep/delete/} + ${resep.noResep}">Delete Resep</a>
+        </td>
         <hr><hr>
     </section>
     <section>
@@ -33,7 +35,7 @@
                 <hr>
             </div>
         </div>
-        <div th:if="${resep.noResep != null}">
+        <div th:unless="${resep.noResep != null}">
             <h4>Resep belum memiliki daftar obat</h4>
             <hr>
         </div>
@@ -42,6 +44,12 @@
         <td><a th:href="@{/obat/add/} + ${resep.noResep}">Add Obat</a></td>
     </section>
     <br>
-    <td><a th:href="@{/}">Home</a></td>
+    <br><br>
+    <form method="get" action="/">
+        <button type="submit">Home</button>
+    </form>
+    <form method="get" action="/resep/viewall">
+        <button type="submit">View All</button>
+    </form>
 </body>
 </html>

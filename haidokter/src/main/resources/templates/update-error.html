@@ -7,6 +7,11 @@
         <h2>Perubahan Catatan Resep</h2>
         <h3>Update tidak dapat dilakukan</h3>
         <h3>Resep dengan nomor <span th:text="${noResep}"></span> tidak dapat ditemukan</h3>
-        <a href="/resep/viewall">Kembali</a>
+        <form method="get" action="/">
+            <button type="submit">Home</button>
+        </form>
+        <form method="get" action="/resep/viewall">
+            <button type="submit">View All</button>
+        </form>
     </body>
 </html>

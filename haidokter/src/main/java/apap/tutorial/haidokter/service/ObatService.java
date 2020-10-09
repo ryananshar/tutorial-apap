@@ -9,5 +9,7 @@ public interface ObatService {
 
     ObatModel getObatByID(Long id);
 
-    ObatModel updateObat(ObatModel resepModel);
+    ObatModel updateObat(ObatModel obatModel);
+
+    void deleteResep(Long id);
 }

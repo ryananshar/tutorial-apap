@@ -6,6 +6,11 @@
     <body>
         <h2 th:text="'Obat dengan nomor resep ' + ${nomorResep}
                     + ' berhasil ditambahkan.'"></h2>
-        <a href="/resep/viewall">Kembali</a>
+        <form method="get" action="/">
+            <button type="submit">Home</button>
+        </form>
+        <form method="get" action="/resep/viewall">
+            <button type="submit">View All</button>
+        </form>
     </body>
 </html>

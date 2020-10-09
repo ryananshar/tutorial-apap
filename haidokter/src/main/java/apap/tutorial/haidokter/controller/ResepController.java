@@ -3,7 +3,7 @@ package apap.tutorial.haidokter.controller;
 
 import apap.tutorial.haidokter.model.ObatModel;
 import apap.tutorial.haidokter.model.ResepModel;
-import apap.tutorial.haidokter.service.ObatService;
+// import apap.tutorial.haidokter.service.ObatService;
 import apap.tutorial.haidokter.service.ResepService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ResepController {
     private ResepService resepService;
 
     @Autowired
-    private ObatService obatService;
+    // private ObatService obatService;
 
     @GetMapping("/")
     private String home() {
@@ -67,6 +67,23 @@ public class ResepController {
         model.addAttribute("resep", updatedResep);
 
         return "update-resep";
+    }
+
+    @GetMapping("/resep/delete/{noResep}")
+    public String deleteResep(@PathVariable Long noResep, Model model) {
+        String message = "Resep tidak bisa dihapus karena memiliki obat.";
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+
+        try {
+            resepService.deleteResep(resep);
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
+
+        model.addAttribute("noResep", noResep);
+        model.addAttribute("message", message);
+
+        return "delete-resep";
     }
 
     @GetMapping("/resep/view")
@@ -153,26 +170,7 @@ public class ResepController {
             
     // }
 
-    // @GetMapping(value = "resep/delete/no-resep/{noResep}")
-    // public String deleteResep (
-    //     @PathVariable(value = "noResep", required = true) Long noResep,
-    //     Model model) {
-
-    //         // Mendapatkan ResepModel berdasarkan noResep
-    //         ResepModel resep = resepService.getResepByNomorResep(noResep);
-    //         List<ResepModel> listResep = resepService.getResepList();
-
-    //         // Mencari dan menghapus resep
-    //         for (int i = 0; i < listResep.size(); i++) {
-    //             if (listResep.get(i).getNoResep().equals(noResep)) {
-    //                 listResep.remove(i);
-    //                 model.addAttribute("noResep", noResep);
-    //                 model.addAttribute("resep", resep);
-    //                 return "delete-resep";
-    //             }
-    //         }
-    //         return "delete-error";
-    // }
+    
 
     // // fitur delete-all
     // // Path url: http://localhost:8080/resep/delete-all 

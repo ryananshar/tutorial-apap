@@ -47,7 +47,7 @@ public class ObatController {
     }
 
     @GetMapping("/obat/change/{id}")
-    private String changeResepFormpage(
+    private String changeObatFormpage(
         @PathVariable Long id,
         Model model
     ) {
@@ -58,13 +58,13 @@ public class ObatController {
     }
 
     @PostMapping("/obat/change")
-    private String changeResepFormSubmit(
+    private String changeObatFormSubmit(
         @ModelAttribute ObatModel obat,
         Model model
     ) {
         ObatModel updatedObat = obatService.updateObat(obat);
         model.addAttribute("obat", updatedObat);
 
-        return "update-resep";
+        return "update-obat";
     }
 }
