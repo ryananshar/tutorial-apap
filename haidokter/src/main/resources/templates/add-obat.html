@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
     <head>
-        <title>Update Resep</title>
+        <title>Add Obat</title>
     </head>
     <body>
-        <h2>Perubahan Catatan Resep</h2>
-        <h3>Update tidak dapat dilakukan</h3>
-        <h3>Resep dengan nomor <span th:text="${noResep}"></span> tidak dapat ditemukan</h3>
+        <h2 th:text="'Obat dengan nomor resep ' + ${obat.getResepModel().getNoResep()}
+                    + ' berhasil ditambahkan.'"></h2>
         <form method="get" action="/">
             <button type="submit">Home</button>
         </form>

@@ -4,10 +4,19 @@
         <title>Update Resep</title>
     </head>
     <body>
-        <h2>Perubahan Catatan Resep</h2>           
+        <h2>Perubahan Data Resep</h2>           
         <h3 th:text="'Nomor Resep: ' + ${resep.getNoResep()}"></h3>
+        <h3 th:text="'Nama Dokter: ' + ${resep.getNamaDokter()}"></h3>
+        <h3 th:text="'Nama Pasien: ' + ${resep.getNamaPasien()}"></h3>
         <h3 th:text="'Catatan Baru: ' + ${resep.getCatatan()}"></h3>
-        <h3>Selamat, catatan resep anda berhasil diganti</h3>
-        <a href="/resep/viewall">Kembali</a>
+        <h3>Selamat, data resep anda berhasil diganti</h3>
+        <a th:href="@{/resep/view?noResep=} + ${resep.noResep}">Kembali</a>
     </body>
+    <br><br>
+    <form method="get" action="/">
+        <button type="submit">Home</button>
+    </form>
+    <form method="get" action="/resep/viewall">
+        <button type="submit">View All</button>
+    </form>
 </html>

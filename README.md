@@ -5,7 +5,7 @@
 ## Tutorial 1
 ### What I have learned today
 Kali ini saya mempelajari bagaimana cara menggunakan framework Spring Boot untuk membuat Website.
-Penggunaan beberap dependency pada framework springboot.
+Penggunaan beberapa dependency pada framework springboot.
 ### Github
 1. Apa itu Issue Tracker? Apa saja masalah yang dapat diselesaikan dengan Issue Tracker? 
 - Issue tracker berguna untuk mencatat isu dan melacak bug. Alat ini berguna untuk menyajikan informasi atau peringatan kepada tim developer untuk mengatasi isu yang keluar dengan lebih efisien.
@@ -71,3 +71,26 @@ http://localhost:8080/resep/view/?noResep=1
 http://localhost:8080/resep/add?noResep=3&namaDokter=Kinta&namaPasien=Andin&catatan=Semoga%20bisa%20survive
 
 [Image ScreenShot](https://ibb.co/wYLWYsR)
+
+### What I did not understand
+- [ ] Kenapa harus menggunakan Autowired
+
+## Tutorial 3
+
+1. Pada class ResepDb , terdapat method findByNoResep , apakah kegunaan dari method tersebut?
+    Method findByNoResep pada ResepDb digunakan untuk mencari suatu objek ResepModel di dalam database. Method tersebut diletakkan lagi di class ResepDB untuk memudahkan modifikasi kode karena sudah terdefinisi ada fungsi apa saja yang bisa dilakukan suatu class. Hal yang sama juga bisa dilakukan di dalam class ObatDB.
+
+2. Pada class ResepController , jelaskan perbedaan method addResepFormPage dan addResepSubmit ?
+    Pada class ResepController, method addResepFormPage digunakan untuk mempersiapkan atribut-atribut resep dan menyediakan kolom formulir untuk pengisian data resep baru, sedangkan addResepSubmit digunakan untuk menerima input dari formulir tersebut dalam bentuk method POST dan menambahkan resep berdasarkan input-input yang diterima.
+
+3. Jelaskan kegunaan dari JPA Repository !
+    JPA (Java Persistence API) adalah cara Springboot untuk menyimpan object-object Java ke dalam database relasional.
+
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara ResepModel dan ObatModel dibuat?
+    Relasi antara ResepModel dan ObatModel dibentuk dalam class ObatModel dengan menggunakan @ManyToOne sebagai tipe relasi, @JoinColumn untuk menggabungkan dua tabel (join berdasarkan resep_id), dan @OnDelete untuk pengaturan cascade penghapusan sebuah baris.
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER !
+    FetchType.LAZY dan FetchType.EAGER adalah dua macam data fetching atau pun loading yang disediakan oleh SpringBoot. FetchType.LAZY akan load data field tertentu ke memori hanya jika diberikan perintah eksplisit yang membutuhkan data tersebut, sedangkan FetchType.EAGER akan me-load semua data field seketika object tersebut dipanggil. CascadeType.ALL digunakan untuk melakukan meng-cascade semua aksi EntityManager (DETACH,MERGE,PERSIST,REFRESH, dan REMOVE).
+
+### What I have learned today
+- Pemahaman lebih lanjut mengenai pengaplikasian konsep IoC

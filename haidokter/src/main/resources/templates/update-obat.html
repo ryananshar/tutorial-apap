@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <title>Update Obat</title>
+    </head>
+    <body>
+        <h2>Perubahan Data Obat</h2>           
+        <h3 th:text="'Nomor Resep: ' + ${obat.getResepModel().getNoResep()}"></h3>
+        <h3 th:text="'Nama: ' + ${obat.getNama()}"></h3>
+        <h3 th:text="'Bentuk: ' + ${obat.getBentuk()}"></h3>
+        <h3 th:text="'Bentuk: ' + ${obat.getKuantitas()}"></h3>
+        <h3>Selamat, data obat anda berhasil diganti</h3>
+        <a th:href="@{/resep/view?noResep=} + ${obat.getResepModel().getNoResep()}">Kembali</a>
+    </body>
+    <br><br>
+    <form method="get" action="/">
+        <button type="submit">Home</button>
+    </form>
+    <form method="get" action="/resep/viewall">
+        <button type="submit">View All</button>
+    </form>
+</html>

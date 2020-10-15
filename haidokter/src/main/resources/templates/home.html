@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h2>Selamat Datang di HaiDokter!</h2>
+    <h3>Tambah Resep</h3>
+    <td><a th:href="@{/resep/add}">Tambah Resep</a></td>
+
+    <h3>Cari Resep Berdasarkan Nomor Resep</h3>
+
+    <form th:action="@{/resep/view}" method="GET">
+        No Resep:<br>
+        <label>
+            <input type="text" name="noResep"/>
+        </label>
+        <button type="submit">Cari</button>
+    </form>
+    <br>
+    <form method="get" action="/resep/viewall">
+        <button type="submit">View All</button>
+    </form>
+</body>
+</html>

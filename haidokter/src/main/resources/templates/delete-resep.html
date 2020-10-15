@@ -5,10 +5,25 @@
     </head>
     <body>
         <h2>Penghapusan Resep</h2>
-        <h3 th:text="'Nomor Resep: ' + ${resep.getNoResep()}"></h3>
-        <h3>Selamat, catatan resep anda berhasil dihapus</h3>
-            <h3>Update tidak dapat dilakukan</h3>
-            <h3>Resep dengan nomor <span th:text="$noResep"></span></h3>
-        <a href="/resep/viewall">Kembali</a>
+        <div th:if="${message} == null">
+            <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
+            <h3>Selamat, data resep anda berhasil dihapus</h3>
+        </div>
+        <div th:unless="${message} == null">
+            <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
+            <h3 th:text="${message}"></h3>
+        </div>
+        <td>
+            <td><a th:href="@{/resep/view?noResep=} + ${noResep}">Kembali</a></td>
+            <br><br>
+            <form method="get" action="/">
+                <button type="submit">Home</button>
+            </form>
+            <br>
+            <form method="get" action="/resep/viewall">
+                <button type="submit">View All</button>
+            </form>
+        </td>
+            
     </body>
 </html>
