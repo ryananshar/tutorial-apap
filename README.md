@@ -94,3 +94,12 @@ http://localhost:8080/resep/add?noResep=3&namaDokter=Kinta&namaPasien=Andin&cata
 
 ### What I have learned today
 - Pemahaman lebih lanjut mengenai pengaplikasian konsep IoC
+
+## Tutorial 4
+1. Jelaskan perbedaan th:include dan th:replace!
+    th:include bisa menyertakan bagian dari page lain, sedangkan th:replace akan menggantikan tag yang di-host dengan bagian dari page lain
+2. Jelaskan apa fungsi dari th:object!
+    th: objek digunakan untuk menentukan objek yang akan diikat oleh data formulir yang dikirimkan
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+    (*) dipakai untuk menunjuk suatu objek yang sudah terkirim dari formulir sebelumny. Sedangkan ($) menunjuk objek yang di parsing dari kontroler. Keduanya cocok dipakai ketika ingin mengupdate suatu data yang sudah ada di database.
+4. Bagaimana kamu menyelesaikan latihan nomor 3?

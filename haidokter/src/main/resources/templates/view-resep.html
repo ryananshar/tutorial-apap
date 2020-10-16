@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <nav th:replace="fragments/fragment :: navbar(page = 'View Resep')"></nav>
     <div class="container-fluid">
         <div th:if="${message} != null">           
             <div class="card">
@@ -53,7 +53,7 @@
             </section>
             <section>        
                 <h2 th:text="${title}"></h2>  
-                <form th:action="@{/obat/delete/no-resep/}" th:object="${resep}" method="POST">
+                <form th:action="@{/obat/delete/}" th:object="${resep}" method="POST">
                     <div class="mb-3">
                         <a 
                             th:href="@{/obat/add/} + ${resep.noResep}"

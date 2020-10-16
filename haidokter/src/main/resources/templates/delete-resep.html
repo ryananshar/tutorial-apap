@@ -7,28 +7,33 @@
 </head>
 
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
-    <h2>Penghapusan Resep</h2>
-    <div th:if="${message} == null">
-        <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
-        <h3>Selamat, data resep anda berhasil dihapus</h3>
-    </div>
-    <div th:unless="${message} == null">
-        <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
-        <h3 th:text="${message}"></h3>
-    </div>
-    <td>
-        <td><a th:href="@{/resep/view?noResep=} + ${noResep}">Kembali</a></td>
-        <br><br>
-        <form method="get" action="/">
-            <button type="submit">Home</button>
-        </form>
+    <nav th:replace="fragments/fragment :: navbar(page = 'Delete Resep')"></nav>
+    <div class="container-fluid">
+        <h2>Penghapusan Resep</h2>
+        <div class="card">
+            <div th:if="${message} == null">
+                <div class="card-header">
+                    Success
+                </div>
+                <div class="card-body">
+                    <div th:text="'Nomor Resep: ' + ${noResep}"></div>
+                    <h5>Selamat, data resep anda berhasil dihapus</h5>
+                </div>                
+            </div>
+            <div th:unless="${message} == null">
+                <div class="card-header">
+                    Error
+                </div>
+                <div class="card-body">
+                    <div th:text="'Nomor Resep: ' + ${noResep}"></div>
+                    <div th:text="${message}"></div>
+                </div> 
+            </div>
+        </div>  
         <br>
-        <form method="get" action="/resep/viewall">
-            <button type="submit">View All</button>
-        </form>
-    </td>
+        <a th:href="@{/}">Kembali</a>      
     </div>
+    
         
 </body>
 </html>

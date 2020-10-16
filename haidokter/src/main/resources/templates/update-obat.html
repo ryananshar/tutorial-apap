@@ -7,20 +7,26 @@
 </head>
 
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
-    <h2>Perubahan Data Obat</h2>           
-    <h3 th:text="'Nomor Resep: ' + ${obat.getResepModel().getNoResep()}"></h3>
-    <h3 th:text="'Nama: ' + ${obat.getNama()}"></h3>
-    <h3 th:text="'Bentuk: ' + ${obat.getBentuk()}"></h3>
-    <h3 th:text="'Bentuk: ' + ${obat.getKuantitas()}"></h3>
-    <h3>Selamat, data obat anda berhasil diganti</h3>
-    <a th:href="@{/resep/view?noResep=} + ${obat.getResepModel().getNoResep()}">Kembali</a>
-</body>
-<br><br>
-<form method="get" action="/">
-    <button type="submit">Home</button>
-</form>
-<form method="get" action="/resep/viewall">
-    <button type="submit">View All</button>
-</form>
+    <nav th:replace="fragments/fragment :: navbar(page = 'Update Obat')"></nav>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                Success
+            </div>
+            <div class="card-body">                
+                <div class="form-row">
+                    <div class="col">
+                        <div th:text="'Nomor Resep: ' + ${obat.getResepModel().getNoResep()}"></div>
+                        <div th:text="'Nama: ' + ${obat.getNama()}">></div>
+                        <div th:text="'Bentuk: ' + ${obat.getBentuk()}"></div>
+                        <div th:text="'Jumlah: ' + ${obat.getKuantitas()}"></div>
+                        <br>
+                        <h5>Selamat, data obat anda berhasil diganti</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <a th:href="@{/resep/view?noResep=} + ${obat.getResepModel().getNoResep()}">Kembali</a>
+    </div>
 </html>
