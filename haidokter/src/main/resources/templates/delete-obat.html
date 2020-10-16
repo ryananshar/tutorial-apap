@@ -1,14 +1,22 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <title>Delete Obat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-    <h2>Penghapusan Obat</h2>
-    <h3 th:text="'Nomor Resep: ' + ${obat.getResepModel().getNoResep()}"></h3>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <h3 th:text="${obatCount} + ' Obat telah berhasil dihapus'"></h3>
+        <a th:href="@{/}">Kembali ke Home</a>
+    </div>
+    <!-- <h2>Penghapusan Obat</h2>
+    <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
     <h3 th:text="'Id Obat: ' + ${id}"></h3>
     <h3>Selamat, data Obat anda berhasil dihapus</h3>
     <td>
-        <td><a th:href="@{/resep/view?noResep=} + ${obat.getResepModel().getNoResep()}">Kembali</a></td>
+        <td><a th:href="@{/resep/view?noResep=} + ${noResep}">Kembali</a></td>
         <br><br>
         <form method="get" action="/">
             <button type="submit">Home</button>
@@ -17,7 +25,7 @@
         <form method="get" action="/resep/viewall">
             <button type="submit">View All</button>
         </form>
-    </td>
+    </td> -->
         
 </body>
 </html>

@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-    <head>
-        <title>Update Resep</title>
-    </head>
-    <body>
-        <h2>Perubahan Catatan Resep</h2>
-        <h3>Update tidak dapat dilakukan</h3>
-        <h3>Resep dengan nomor <span th:text="${noResep}"></span> tidak dapat ditemukan</h3>
-        <form method="get" action="/">
-            <button type="submit">Home</button>
-        </form>
-        <form method="get" action="/resep/viewall">
-            <button type="submit">View All</button>
-        </form>
-    </body>
+<head>
+    <title>Update Resep</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                Error
+            </div>
+            <div class="card-body">                
+                <div class="form-row">
+                    <div class="col-11">
+                        <div th:text="'Update tidak dapat dilakukan'"></div>
+                        <div th:text="'Resep dengan nomor ' + ${noResep} + ' tidak dapat ditemukan'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <a th:href="@{/}">Kembali</a>
+    </div>
 </html>

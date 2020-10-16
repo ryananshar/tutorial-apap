@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-    <head>
-        <title>Delete Resep</title>
-    </head>
-    <body>
-        <h2>Penghapusan Resep</h2>
-        <div th:if="${message} == null">
-            <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
-            <h3>Selamat, data resep anda berhasil dihapus</h3>
-        </div>
-        <div th:unless="${message} == null">
-            <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
-            <h3 th:text="${message}"></h3>
-        </div>
-        <td>
-            <td><a th:href="@{/resep/view?noResep=} + ${noResep}">Kembali</a></td>
-            <br><br>
-            <form method="get" action="/">
-                <button type="submit">Home</button>
-            </form>
-            <br>
-            <form method="get" action="/resep/viewall">
-                <button type="submit">View All</button>
-            </form>
-        </td>
-            
-    </body>
+<head>
+    <title>Delete Resep</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <h2>Penghapusan Resep</h2>
+    <div th:if="${message} == null">
+        <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
+        <h3>Selamat, data resep anda berhasil dihapus</h3>
+    </div>
+    <div th:unless="${message} == null">
+        <h3 th:text="'Nomor Resep: ' + ${noResep}"></h3>
+        <h3 th:text="${message}"></h3>
+    </div>
+    <td>
+        <td><a th:href="@{/resep/view?noResep=} + ${noResep}">Kembali</a></td>
+        <br><br>
+        <form method="get" action="/">
+            <button type="submit">Home</button>
+        </form>
+        <br>
+        <form method="get" action="/resep/viewall">
+            <button type="submit">View All</button>
+        </form>
+    </td>
+    </div>
+        
+</body>
 </html>

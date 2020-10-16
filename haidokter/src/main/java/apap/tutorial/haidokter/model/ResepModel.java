@@ -72,4 +72,8 @@ public class ResepModel implements Serializable {
 		this.listObat = listObat;
 	}
 
+	public boolean isPresent() {
+		return true;
+	}
+
 }

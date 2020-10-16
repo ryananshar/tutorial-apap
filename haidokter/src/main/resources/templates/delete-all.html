@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-    <head>
-        <title>Delete All Resep</title>
-    </head>
-    <body>
-        <h2>Penghapusan Semua Resep</h2>
-        <h3>Selamat, semua data catatan resep anda berhasil dihapus</h3>
-        <form method="get" action="/">
-            <button type="submit">Home</button>
-        </form>
-        <form method="get" action="/resep/viewall">
-            <button type="submit">View All</button>
-        </form>
-    </body>
+<head>
+    <title>Delete All Resep</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <h2>Penghapusan Semua Resep</h2>
+    <h3>Selamat, semua data catatan resep anda berhasil dihapus</h3>
+    <form method="get" action="/">
+        <button type="submit">Home</button>
+    </form>
+    <form method="get" action="/resep/viewall">
+        <button type="submit">View All</button>
+    </form>
+</body>
 </html>

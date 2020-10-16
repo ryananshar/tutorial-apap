@@ -3,49 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <script 
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"
-    ></script>
-    <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
-        crossorigin="anonymous"
-    ></script>
-    <script 
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
-        crossorigin="anonymous"
-    ></script>
-    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold text-success" href="#">
-            HaiDokter!
-        </a>
-        <button
-            class="navbar-toggler"
-            type="button" 
-            data-toggle="collapse"
-            data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <a class="nav-item nav-link active text-secondary" th:href="@{/}">
-                    Home <span class="sr-only">(current)</span>
-                </a>
-            </ul>
-        </div>
-    </nav>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
     <div class="container-fluid">
         <h2>Selamat datang di HaiDokter!</h2>
         <a th:href="@{/resep/viewall}" class="btn btn-success">
@@ -86,23 +49,4 @@
         </div>
     </div>
 </body>
-<!-- <body>
-    <h2>Selamat Datang di HaiDokter!</h2>
-    <h3>Tambah Resep</h3>
-    <td><a th:href="@{/resep/add}">Tambah Resep</a></td>
-
-    <h3>Cari Resep Berdasarkan Nomor Resep</h3>
-
-    <form th:action="@{/resep/view}" method="GET">
-        No Resep:<br>
-        <label>
-            <input type="text" name="noResep"/>
-        </label>
-        <button type="submit">Cari</button>
-    </form>
-    <br>
-    <form method="get" action="/resep/viewall">
-        <button type="submit">View All</button>
-    </form>
-</body> -->
 </html>

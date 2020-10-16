@@ -3,31 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Form Add Obat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-    <h3>Tambah Obat</h3>
-    <form th:action="@{/obat/add}" th:object="${obat}" method="POST">
-        <input type="hidden" th:field="*{resepModel}" />
-        Nama:<br>
-        <input type="text" name="nama"/>
-        <br>
-        Bentuk:<br>
-        <select name="bentuk">
-            <option value="0">Kapsul</option>
-            <option value="1">Tablet</option>
-            <option value="2">Sirup</option>
-        </select>
-        <br>
-        Kuantitas:<br>
-        <input type="number" name="kuantitas" />
-        <br><br>
-        <button type="submit" value="Submit">Submit</button>
-    </form>
-    <form method="get" action="/">
-        <button type="submit">Home</button>
-    </form>
-    <form method="get" action="/resep/viewall">
-        <button type="submit">View All</button>
-    </form>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <h3>Tambah Data Obat</h3>
+        <hr />
+        <div class="row">
+            <div class="col">
+                <form th:action="@{/obat/add}" th:object="${obat}" method="POST">
+                    <input type="hidden" th:field="*{resepModel}"/>
+                    <div class="form-group">
+                        <label for="nama_obat">Nama Obat:</label>
+                        <input name="nama" type="text" class="form-control" placeholder="Masukan nama obat" id="nama_obat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bentuk_obat">Bentuk Obat:</label>
+                        <select name="bentuk" class="form-control" id="bentuk_obat" required>
+                            <option value="0">Kapsul</option>
+                            <option value="1">Tablet</option>
+                            <option value="2">Sirup</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="kuantitas">Jumlah Obat:</label>
+                        <input name="kuantitas" type="number" class="form-control" placeholder="Masukan jumlah obat" id="kuantitas" required>
+                    </div>
+                    <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+                    <a th:href="@{/resep/view?noResep=} + ${noResep}">Kembali</a>
+                </form>
+            </div>
+        </div>
+    </div>   
+    
 </body>
 </html>

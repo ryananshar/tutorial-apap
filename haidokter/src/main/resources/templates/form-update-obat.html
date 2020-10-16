@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Form Add Obat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
     <h3>Change Data Obat</h3>
     <form th:action="@{/obat/change}" th:object="${obat}" method="POST">
         <input type="hidden" name="id" th:value="*{id}">
         Nomor Resep:<br>
-        <input type="text" name="resepModel" th:value="${obat.getResepModel().getNoResep()}" required>
+        <input type="text" name="resepModel" th:value="${noResep}" required>
         <br>
         Nama:<br>
         <input type="text" name="nama" th:value="*{nama}"/>
@@ -25,7 +29,7 @@
         <input type="number" name="kuantitas" th:value="*{kuantitas}"/>
         <br><br>
         <button type="submit" value="Submit">Submit</button>
-        <td><a th:href="@{/resep/view?noResep=} + ${obat.getResepModel().getNoResep()}">Kembali</a></td>
+        <td><a th:href="@{/resep/view?noResep=} + ${noResep}">Kembali</a></td>
     </form>
     <form method="get" action="/">
         <button type="submit">Home</button>
