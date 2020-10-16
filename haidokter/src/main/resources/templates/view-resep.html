@@ -24,7 +24,40 @@
     
             <h2 th:text="${title}"></h2>
             <div th:if="${resep.noResep != null}">
-                <div th:each="obat : ${listObat}">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Obat</th>
+                            <th>Nama</th>
+                            <th>Bentuk</th>
+                            <th>Kuantitas</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="obat, iterationStatus : ${listObat}">
+                            <!-- 
+                            index: index iterasi, dimulai dari 0 (nol)
+                            count: banyaknya element yang telah diproses
+                            size: jumlah total element yang ada pada list
+                            even/odd: cek index, apakah genap atau ganjil 
+                            -->
+                            <td th:text="${iterationStatus.count}"></td>
+                            <td th:text="${obat.id}"></td>
+                            <td th:text="${obat.nama}"></td>
+                            <td th:if="${obat.bentuk == 0}">Tablet</td>
+                            <td th:if="${obat.bentuk == 1}">Kapsul</td>
+                            <td th:if="${obat.bentuk == 2}">Sirup</td>
+                            <td th:text="${obat.kuantitas}"></td>
+                            <td>
+                                <a th:href="@{/obat/change/} + ${obat.id}">Change Obat</a>
+                                <a th:href="@{/obat/delete/} + ${obat.id}">Delete Obat</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div th:each="obat : ${listObat}">
                     <h3 th:text="'ID Obat: ' +${obat.id}"></h3>
                     <h3 th:text="'Nama: ' +${obat.nama}"></h3>
     
@@ -37,7 +70,7 @@
                     <a th:href="@{/obat/change/} + ${obat.id}">Change Obat</a>
                     <a th:href="@{/obat/delete/} + ${obat.id}">Delete Obat</a>
                     <hr>
-                </div>
+                </div> -->
             </div>
             <div th:unless="${resep.noResep != null}">
                 <h4>Resep belum memiliki daftar obat</h4>
