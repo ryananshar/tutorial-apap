@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-    <head>
-        <title>View All Resep</title>
-    </head>
-    <body>
-        <h2>Daftar Seluruh Resep</h2>
-        <div th:each="resep: ${listResep}">
-            <h3 th:text="'Nomor Resep: ' + ${resep.getNoResep()}"></h3>
-            <h3 th:text="'Nama Dokter: ' + ${resep.getNamaDokter()}"></h3>
-            <h3 th:text="'Nama Pasien: ' + ${resep.getNamaPasien()}"></h3>
-            <h3 th:text="'Catatan: ' + ${resep.getCatatan()}"></h3>
-            <hr>
-        </div>
-        <br>
-    <form method="get" action="/">
-        <button type="submit">Home</button>
-    </form>
-    </body>
+<head>
+    <title>View All Resep</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar(page = 'View All Resep')"></nav>
+    <h3>Daftar Seluruh Resep</h3>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No. Resep</th>
+                <th>Nama Dokter</th>
+                <th>Nama Pasien</th>
+                <th>Catatan</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="resep, iterationStatus : ${listResep}"
+                th:style="${iterationStatus.even} ? 'font-weight: bold;'">
+                <td th:text="'Nomor Resep: ' + ${resep.getNoResep()}"></td>
+                <td th:text="'Nama Dokter: ' + ${resep.getNamaDokter()}"></td>
+                <td th:text="'Nama Pasien: ' + ${resep.getNamaPasien()}"></td>
+                <td th:text="'Catatan: ' + ${resep.getCatatan()}"></td><td>
+                    <a th:href="@{/resep/view?noResep=} + ${resep.noResep}" class="btn btn-success" >Lihat</a>
+                    <a th:href="@{/resep/change/} + ${resep.noResep}" class="btn btn-outline-success">Ubah</a>
+                    <a th:href="@{/resep/delete/no-resep/} + ${resep.noResep}" class="btn btn-danger">Hapus</a>
+            </tr>
+        </tbody>
+    </table>
+</body>
 </html>

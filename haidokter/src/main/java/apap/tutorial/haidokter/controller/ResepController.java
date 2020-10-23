@@ -47,16 +47,34 @@ public class ResepController {
         return "add-resep";
     }
 
-    @GetMapping("/resep/change/{noResep}")
-    private String changeResepFormpage(
-        @PathVariable Long noResep,
-        Model model
+    @GetMapping({"/resep/change/{noResep}", "/resep/change"})
+    private String changeResepFormPage(
+            @PathVariable(required = false) Long noResep,
+            Model model
     ) {
-        ResepModel resep = resepService.getResepByNomorResep(noResep);
-        model.addAttribute("resep", resep);
+        try {
+            ResepModel resep = resepService.getResepByNomorResep(noResep);
+            model.addAttribute("resep", resep);
 
-        return "form-update-resep";
+            return "form-update-resep";
+        } catch (Exception e) {
+            model.addAttribute("msg", "Nomor Resep Tidak Ditemukan atau Nomor Resep Tidak Ada!");
+
+        return "update-error";
+        }
+        
     }
+
+    // @GetMapping("/resep/change/{noResep}")
+    // private String changeResepFormpage(
+    //     @PathVariable Long noResep,
+    //     Model model
+    // ) {
+    //     ResepModel resep = resepService.getResepByNomorResep(noResep);
+    //     model.addAttribute("resep", resep);
+
+    //     return "form-update-resep";
+    // }
 
     @PostMapping("/resep/change")
     private String changeResepFormSubmit(
@@ -69,21 +87,45 @@ public class ResepController {
         return "update-resep";
     }
 
-    @GetMapping("/resep/delete/{noResep}")
-    public String deleteResep(@PathVariable Long noResep, Model model) {
-        String message = "Resep tidak bisa dihapus karena memiliki obat.";
-        ResepModel resep = resepService.getResepByNomorResep(noResep);
+    // @GetMapping("/resep/delete/{noResep}")
+    // public String deleteResep(@PathVariable Long noResep, Model model) {
+    //     String message = "Resep tidak bisa dihapus karena memiliki obat.";
+    //     ResepModel resep = resepService.getResepByNomorResep(noResep);
 
-        try {
-            resepService.deleteResep(resep);
-        } catch (Exception e) {
-            message = e.getMessage();
+    //     try {
+    //         List<ObatModel> listObat = resep.getListObat(); 
+    //         resepService.deleteResep(resep);
+    //     } catch (Exception e) {
+    //         message = e.getMessage();
+    //     }
+
+    //     model.addAttribute("noResep", noResep);
+    //     model.addAttribute("message", message);
+
+    //     return "delete-resep";
+    // }
+
+    @GetMapping({"/resep/delete/no-resep/{noResep}", "/resep/delete/no-resep"})
+    public String deleteResep(
+            @PathVariable(value = "noResep", required = false) Long noResep,
+            Model model
+    ) throws Exception {
+        if (noResep != null) {
+            if (isResepExists(noResep) && !hasObat(noResep)) {
+                ResepModel resep = resepService.getResepByNomorResep(noResep);
+                model.addAttribute("resep", resep);
+                resepService.deleteResep(resep);
+
+                return "delete-resep";
+            } else if (hasObat(noResep)) {
+                model.addAttribute("msg", "Resep masih memiliki obat! Hapus obat terlebih dahulu!");
+
+                return "delete-error";
+            }
         }
+        model.addAttribute("msg", "Nomor Resep Tidak Ditemukan atau Nomor Resep Tidak Ada!");
 
-        model.addAttribute("noResep", noResep);
-        model.addAttribute("message", message);
-
-        return "delete-resep";
+        return "delete-error";
     }
 
     @GetMapping("/resep/view")
@@ -93,9 +135,10 @@ public class ResepController {
     ) {
         try {
             ResepModel resep = resepService.getResepByNomorResep(noResep);
-            List<ObatModel> listObat = resep.getListObat();
+            
             model.addAttribute("resep", resep);
-            model.addAttribute("listObat", listObat);
+            List<ObatModel> listObat = resep.getListObat();  
+            model.addAttribute("listObat", listObat);           
 
             return "view-resep";
         } catch (NoSuchElementException e) {
@@ -107,26 +150,6 @@ public class ResepController {
                 
     } 
 
-    // Routing URL
-    // @RequestMapping("/resep/add")
-    // public String addResep(
-    //     @RequestParam(value = "noResep", required = true) Long noResep,
-    //     @RequestParam(value = "namaDokter", required = true) String namaDokter,
-    //     @RequestParam(value = "namaPasien", required = true) String namaPasien,
-    //     @RequestParam(value = "catatan", required = true) String catatan,
-    //     Model model ) {
-    //         // Membuat objek ResepModel
-    //         ResepModel resep = new ResepModel(noResep, namaDokter, namaPasien, catatan);
-
-    //         // Memanggil service addResep
-    //         resepService.addResep(resep);
-
-    //         // Menambah variabel nomorResep untuk dirender pada Thymeleaf
-    //         model.addAttribute("nomorResep", noResep);
-
-    //         // Return view template
-    //         return "add-resep";
-    //     }
 
     @RequestMapping("/resep/viewall")
     public String listResep(Model model) {
@@ -141,58 +164,11 @@ public class ResepController {
     }
 
 
-    // @GetMapping(value = "resep/view/no-resep/{noResep}")
-    // public String detailResepPathVariable (
-    //     @PathVariable(value = "noResep", required = true) Long noResep,
-    //     Model model) {
+    private boolean isResepExists(Long noResep) {
+        return resepService.getResepByNomorResep(noResep).isPresent();
+    }
 
-    //         // Mendapatkan ResepModel berdasarkan noResep
-    //         ResepModel resep = resepService.getResepByNomorResep(noResep);
-
-    //         // Menambah variabel listResep untuk dirender pada Thymeleaf
-    //         model.addAttribute("resep", resep);
-
-    //         return "view-resep";
-    // }
-
-    // @GetMapping(value = "resep/update/no-resep/{noResep}/catatan/{catatan}")
-    // public String updateResep (
-    //     @PathVariable(value = "noResep", required = true) Long noResep,
-    //     @PathVariable(value = "catatan", required = true) String catatan,
-    //     Model model) {
-
-    //         // Mendapatkan ResepModel berdasarkan noResep dan meng-update catatan
-    //         ResepModel resep = resepService.getResepByNomorResep(noResep);            
-    //         resep.setCatatan(catatan);
-
-    //         // Menambah variabel listResep untuk dirender pada Thymeleaf
-    //         if (resep.getNoResep() != null) {
-    //             model.addAttribute("noResep", noResep);
-    //             model.addAttribute("resep", resep);    
-    //             return "update-resep";
-    //         } else {
-    //             return "update-error";
-    //         }
-            
-            
-    // }
-
-    
-
-    // // fitur delete-all
-    // // Path url: http://localhost:8080/resep/delete-all 
-    // @GetMapping(value = "resep/delete-all")
-    // public String deleteAll(Model model) {
-    //     // Mendapat list resep
-    //     List<ResepModel> listResep = resepService.getResepList();
-
-    //     // Menghapus semua elemen pada list
-    //     listResep.clear();
-
-    //     // Menambah variabel listResep untuk dirender pada Thymeleaf
-    //     model.addAttribute("listResep", listResep);
-
-    //     // Return view template
-    //     return "delete-all";
-    // }
+    private boolean hasObat(Long noResep) {
+        return resepService.getResepByNomorResep(noResep).getListObat().size() != 0;
+    }
 }
