@@ -8,13 +8,17 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import apap.tutorial.haidokter.model.ObatModel;
 import apap.tutorial.haidokter.repository.ObatDb;
+import reactor.core.publisher.Mono;
 
 @Service
 @Transactional
 public class ObatRestServiceImpl implements ObatRestService {
+    private final WebClient webClient;
+
     @Autowired
     private ObatDb obatDb;
 
@@ -53,4 +57,14 @@ public class ObatRestServiceImpl implements ObatRestService {
         obatDb.delete(obat);
     }
     
+    public ObatRestServiceImpl(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.build();
+    }
+
+    @Override
+    public Mono<String> getHospitalByState(String state) {
+        return this.webClient.get().uri("http://www.communitybenefitinsight.org/api/get_hospitals.php?state=" + state)
+                .retrieve()
+                .bodyToMono(String.class);
+    }
 }

@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
 @Service
 @Transactional
 public class ResepRestServiceImpl implements ResepRestService {
-	private WebClient webClient;
+	private final WebClient webClient;
 
 	@Autowired
 	private ResepDb resepDb;

@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import apap.tutorial.haidokter.model.ObatModel;
 import apap.tutorial.haidokter.service.ObatRestService;
+import reactor.core.publisher.Mono;
 
 
 @RestController
@@ -80,5 +82,10 @@ public class ObatRestController {
     @GetMapping(value = "/obats")
     private List<ObatModel> getListObat() {
         return obatRestService.retrieveListObat();
+    }
+
+    @GetMapping(value = "/hospital/find")
+    private Mono<String> getStatus(@RequestParam(value = "state") String state) {
+        return obatRestService.getHospitalByState(state);
     }
 }
