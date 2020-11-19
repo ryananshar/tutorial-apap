@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import apap.tutorial.haidokter.model.ResepModel;
+import apap.tutorial.haidokter.service.ResepRestService;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -26,7 +28,7 @@ public class ResepRestController {
     @Autowired
     private ResepRestService resepRestService;
 
-    @PostMapping(value = "/resep/{noResep}")
+    @PostMapping(value = "/resep")
     private ResepModel createResep(@Valid @RequestBody ResepModel resep, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
             throw new ResponseStatusException(
