@@ -32,7 +32,7 @@ public class ObatRestController {
     private ObatRestService obatRestService;
 
     @PostMapping(value = "/obat")
-    private ResponseEntity<String> createResep(@Valid @RequestBody ObatModel obat, BindingResult bindingResult) {
+    private ResponseEntity<String> createObat(@Valid @RequestBody ObatModel obat, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
             throw new ResponseStatusException(
                 HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field"

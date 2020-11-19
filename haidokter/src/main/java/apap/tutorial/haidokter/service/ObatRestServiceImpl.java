@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import apap.tutorial.haidokter.model.ObatModel;
+import apap.tutorial.haidokter.model.ResepModel;
 import apap.tutorial.haidokter.repository.ObatDb;
 import reactor.core.publisher.Mono;
 
@@ -22,8 +23,14 @@ public class ObatRestServiceImpl implements ObatRestService {
     @Autowired
     private ObatDb obatDb;
 
+    @Autowired
+    private ResepService resepService;
+
     @Override
     public ObatModel createObat(ObatModel obat) {
+        Long noResep = Long.valueOf(1);
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        obat.setResepModel(resep);
         return obatDb.save(obat);
     }
 
