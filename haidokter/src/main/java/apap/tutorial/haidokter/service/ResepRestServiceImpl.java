@@ -1,9 +1,5 @@
 package apap.tutorial.haidokter.service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +12,17 @@ import apap.tutorial.haidokter.model.ResepModel;
 import apap.tutorial.haidokter.repository.ResepDb;
 import apap.tutorial.haidokter.rest.ResepDetail;
 import apap.tutorial.haidokter.rest.Setting;
+
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 import reactor.core.publisher.Mono;
 
 @Service
 @Transactional
 public class ResepRestServiceImpl implements ResepRestService {
-	private final WebClient webClient;
+	private WebClient webClient;
 
 	@Autowired
 	private ResepDb resepDb;
@@ -67,8 +68,8 @@ public class ResepRestServiceImpl implements ResepRestService {
 	}
 
 	public ResepRestServiceImpl(WebClient.Builder webClientBuilder) {
-		this.webClient = webClientBuilder.baseUrl(Setting.resepUrl).build();
-	}
+        this.webClient = webClientBuilder.baseUrl(Setting.resepUrl).build();
+    }
 
 	@Override
 	public Mono<String> getStatus(Long noResep) {
@@ -78,8 +79,8 @@ public class ResepRestServiceImpl implements ResepRestService {
 	@Override
 	public Mono<ResepDetail> postStatus() {
 		MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
-		data.add("namaDokter", "Dr. APAP");
-		data.add("namaPasiien", "Dede APAP");
+		data.add("namaDokter", "Dr. PAPA");
+		data.add("namaPasien", "Dede APAP");
 		return this.webClient.post().uri("/rest/resep/full")
 				.syncBody(data)
 				.retrieve()

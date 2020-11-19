@@ -17,7 +17,7 @@ public class ResepDetail {
 
 
     public String getStatus() {
-        return this.status;
+        return status;
     }
 
     public void setStatus(String status) {
@@ -25,7 +25,7 @@ public class ResepDetail {
     }
 
     public Integer getResepLicense() {
-        return this.resepLicense;
+        return resepLicense;
     }
 
     public void setResepLicense(Integer resepLicense) {
@@ -33,7 +33,7 @@ public class ResepDetail {
     }
 
     public Date getValidUntil() {
-        return this.validUntil;
+        return validUntil;
     }
 
     public void setValidUntil(Date validUntil) {

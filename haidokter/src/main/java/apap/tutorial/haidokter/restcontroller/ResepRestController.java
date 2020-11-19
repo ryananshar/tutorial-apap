@@ -90,7 +90,7 @@ public class ResepRestController {
         return resepRestService.getStatus(noResep);
     }
 
-    @GetMapping(value = "/full")
+    @PostMapping(value = "/full")
     private Mono<ResepDetail> postStatus() {
         return resepRestService.postStatus();
     }
