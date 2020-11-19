@@ -20,7 +20,9 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import apap.tutorial.haidokter.model.ResepModel;
+import apap.tutorial.haidokter.rest.ResepDetail;
 import apap.tutorial.haidokter.service.ResepRestService;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -66,8 +68,30 @@ public class ResepRestController {
         }
     }
 
+    @GetMapping(value = "/resep/{noResep}")
+    private ResepModel retrieveResep(@PathVariable(value = "noResep") Long noResep) {
+        try {
+            return resepRestService.getResepByNoResep(noResep);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Resep with Number " + String.valueOf(noResep) + " not found!"
+            );
+        }
+        
+    }
+
     @GetMapping(value = "/reseps")
     private List<ResepModel> retrieveListResep() {
         return resepRestService.retrieveListResep();
+    }
+
+    @GetMapping(value = "/resep/{noResep}/status")
+    private Mono<String> getStatus(@PathVariable Long noResep) {
+        return resepRestService.getStatus(noResep);
+    }
+
+    @GetMapping(value = "/full")
+    private Mono<ResepDetail> postStatus() {
+        return resepRestService.postStatus();
     }
 }
