@@ -24,7 +24,7 @@ public class ResepController {
     @Autowired
     // private ObatService obatService;
 
-    @GetMapping("/")
+    // @GetMapping("/")
     private String home() {
         return "home";
     }
