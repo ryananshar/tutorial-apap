@@ -42,7 +42,9 @@ public class UserController {
         String validate = Boolean.toString(userService.checkIfValidOldPassword(user, oldPassword));
 
         if (!userService.checkIfValidOldPassword(user, oldPassword)) {
-            throw new Exception();
+            String msg = "Pasword Lama anda salah";
+            model.addAttribute("msg", msg);
+            return "form-update-password";
         }
 
         if (newPassword.equals(confirmPassword)) {
