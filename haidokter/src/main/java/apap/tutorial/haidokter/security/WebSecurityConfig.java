@@ -3,7 +3,7 @@ package apap.tutorial.haidokter.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+// import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,12 +22,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/resep/**").hasAnyAuthority("APOTEKER")
-                // #1 Otorisasi Add User 
-                .antMatchers(HttpMethod.POST, "/**").hasAnyAuthority("ADMIN")
-                // #2 Otorisasi Add User 
-                .antMatchers("/user/addUser").hasAnyAuthority("ADMIN")
+                // Otorisasi Add User 
+                .antMatchers("/user/addUser/**").hasAnyAuthority("ADMIN")
                 // Otorisasi Add Obat 
                 .antMatchers("/obat/add/**").hasAnyAuthority("APOTEKER")
+                // .antMatchers("/user/updatePassword/**").hasAnyAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

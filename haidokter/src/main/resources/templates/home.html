@@ -60,15 +60,16 @@
                             <label>
                                 User Name
                             </label>
-                            <input type="text" name="username" class="form-control"/>
+                            <input type="text" name="username" class="form-control" required/>
                             <label>
                                 Password
                             </label>
-                            <input type="password" name="password" class="form-control"/>
+                            <input type="password" name="password" class="form-control" 
+                            pattern="(?=.*[A-Za-z]).{8,}" required/>
                             <label>
                                 Role
                             </label>
-                            <select name="role" class="form-control">
+                            <select name="role" class="form-control" required>
                                 <option selected value="">-- Pilih Role --</option>
                                 <option th:each="role :${listRole}" 
                                         th:value="${role.id}"

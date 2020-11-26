@@ -22,4 +22,9 @@ public class PageController {
     public String login() {
         return "login";
     }
+
+    @RequestMapping("/updatePassword")
+    public String updatePasswordForm(Model model) {
+        return "form-update-password";
+    }
 }
