@@ -48,6 +48,40 @@
                 </div>
             </div>
         </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Tambah User Baru
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/user/addUser}" method="POST">
+                            <label>
+                                User Name
+                            </label>
+                            <input type="text" name="username" class="form-control"/>
+                            <label>
+                                Password
+                            </label>
+                            <input type="password" name="password" class="form-control"/>
+                            <label>
+                                Role
+                            </label>
+                            <select name="role" class="form-control">
+                                <option selected value="">-- Pilih Role --</option>
+                                <option th:each="role :${listRole}" 
+                                        th:value="${role.id}"
+                                        th:text="${role.role}">
+                                </option>
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

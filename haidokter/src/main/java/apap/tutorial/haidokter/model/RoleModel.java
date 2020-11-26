@@ -23,8 +23,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name="role")
 public class RoleModel implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
     @NotNull
     @Size(max=50)
