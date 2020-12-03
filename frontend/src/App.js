@@ -7,11 +7,14 @@ import './App.css';
 
 export default class App extends React.Component {
   state = {
+    showFav: false,
     tempList: listMovies,
     favItems: [],
   };
 
-  handleItemClick = (item) => {
+  
+
+  handleItemClickAdd = (item) => {
     // Immotability
     const newItems = [... this.state.favItems];
     const newItem = { ... item };
@@ -20,7 +23,22 @@ export default class App extends React.Component {
 
     if (targetInd < 0) newItems.push(newItem);
     // Delete 1 item at index targetInd
-    else newItems.splice(targetInd, 1);
+    // else newItems.splice(targetInd, 1);
+
+    // Trigger set state
+    this.setState({favItems: newItems});
+  }
+
+  handleItemClickDelete = (item) => {
+    // Immotability
+    const newItems = [... this.state.favItems];
+    const newItem = { ... item };
+    // Find item index using id
+    const targetInd = newItems.findIndex((it) => it.id === newItem.id);
+
+    // if (targetInd < 0) newItems.push(newItem);
+    // Delete 1 item at index targetInd
+    newItems.splice(targetInd, 1);
 
     // Trigger set state
     this.setState({favItems: newItems});
@@ -30,8 +48,13 @@ export default class App extends React.Component {
     this.setState({favItems: []});
   }
 
+  handleOnChange = () => {
+    if (!this.state.showFav) this.setState({showFav: true})
+    else this.setState({showFav: false})
+  }
+
   render() {
-    const {favItems} = this.state;
+    const {favItems, tempList} = this.state;
 
     return (
       <div className="container-fluid">
@@ -39,20 +62,25 @@ export default class App extends React.Component {
         <p className="text-center text-secondary text-sm font-italic">
           (This is a <strong>class-based</strong> application)
         </p>
+        <div className="custom-control custom-switch text-center">
+          <input onChange={this.handleOnChange} type="checkbox" className="custom-control-input" id="customSwitch2"/>
+          <label className="custom-control-label" for="customSwitch2">Show Favorites</label>
+        </div>
+        
         <div className="container pt-3">
           <div className="row">
             <div className="col-sm">
               <List 
                 title="List Movies"
-                items={listMovies}
-                onItemClick={this.handleItemClick}
+                items={tempList}
+                onItemClick={this.handleItemClickAdd}
               />
             </div>
-            <div className="col-sm">
+            <div className={this.state.showFav ? "col-sm" : "col-sm d-none"}>
               <List 
                 title="My Favorites"
                 items={favItems}
-                onItemClick={this.handleItemClick}
+                onItemClick={this.handleItemClickDelete}
               />
               
               {Object.keys(favItems).length <= 0?
@@ -66,7 +94,7 @@ export default class App extends React.Component {
                     onClick={this.deleteAll}
                     type="button" 
                     className="btn btn-danger mr-3"
-                    >Delete
+                    >Delete All
                   </button>
                 </div>
               }
