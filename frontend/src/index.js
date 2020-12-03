@@ -1,15 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import AppFunc from "./AppFunc" ;
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(
-  <React.StrictMode>
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+ReactDOM . render (
+  <>
+  <div className="mt-5" />
     <App />
-  </React.StrictMode>,
+  <div className="mt-5 mb-5" />
+    <AppFunc />
+  <div className="mt-5 mb-5" />
+  </>,
   document.getElementById('root')
-);
+  );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

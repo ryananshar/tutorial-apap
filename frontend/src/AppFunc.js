@@ -8,16 +8,8 @@ import './App.css';
  * Building React component using functional programming paradigm
  */
 
-// Btw, this is hooks. useState function returns an array
-// contains the state and a function to set the state -> [state, setState].
-// What you see below is array destruction.
-// Let say you have an array const arr = ["aaa", "bbb"], to access the item
-// we can use index arr[0] OR destruct it like below
-// const [varName, index1] = arr, variable varName is guaranteed to get the value of index 0 OR "aaa"
-// here is the illustration for this situation
-// below is the return value of useState
-// [favItems, setFavItems] = [state, setState]
-function App() {
+
+export default function AppFunc() {
     const [favItems, setFavItems] = useState(() => []);
 
     function handleItemClick(item) {
@@ -47,15 +39,14 @@ function App() {
                     <List 
                     title="List Movies"
                     items={listMovies}
-                    // onItemClick={this.addToFavorites}
-                    onItemClick={this.handleItemClick}
+                    onItemClick={handleItemClick}
                     />
                 </div>
                 <div className="col-sm">
                     <List 
                     title="My Favorites"
                     items={favItems}
-                    onItemClick={this.handleItemClick}
+                    onItemClick={handleItemClick}
                     />
                 </div>
                 </div>
