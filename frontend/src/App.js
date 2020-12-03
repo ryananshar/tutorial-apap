@@ -7,6 +7,7 @@ import './App.css';
 
 export default class App extends React.Component {
   state = {
+    tempList: listMovies,
     favItems: [],
   };
 
@@ -25,9 +26,13 @@ export default class App extends React.Component {
     this.setState({favItems: newItems});
   }
 
+  deleteAll = () => {
+    this.setState({favItems: []});
+  }
+
   render() {
     const {favItems} = this.state;
-    
+
     return (
       <div className="container-fluid">
         <h1 className="text-center mt-3 mb-0">Favorites Movie App</h1>
@@ -40,7 +45,6 @@ export default class App extends React.Component {
               <List 
                 title="List Movies"
                 items={listMovies}
-                // onItemClick={this.addToFavorites}
                 onItemClick={this.handleItemClick}
               />
             </div>
@@ -50,6 +54,24 @@ export default class App extends React.Component {
                 items={favItems}
                 onItemClick={this.handleItemClick}
               />
+              
+              {Object.keys(favItems).length <= 0?
+                <div>
+                  <h3 className="text-center mt-3 mb-0">Belum ada item yang dipilih</h3>
+                  <p className="text-center text-secondary text-sm">Klik salah satu item di List Movies</p>
+                  
+                </div> :
+                <div >
+                  <button 
+                    onClick={this.deleteAll}
+                    type="button" 
+                    className="btn btn-danger mr-3"
+                    >Delete
+                  </button>
+                </div>
+              }
+              
+              
             </div>
           </div>
         </div>
