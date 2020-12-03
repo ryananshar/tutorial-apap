@@ -9,8 +9,25 @@ export default class App extends React.Component {
   state = {
     favItems: [],
   };
-  
+
+  handleItemClick = (item) => {
+    // Immotability
+    const newItems = [... this.state.favItems];
+    const newItem = { ... item };
+    // Find item index using id
+    const targetInd = newItems.findIndex((it) => it.id === newItem.id);
+
+    if (targetInd < 0) newItems.push(newItem);
+    // Delete 1 item at index targetInd
+    else newItems.splice(targetInd, 1);
+
+    // Trigger set state
+    this.setState({favItems: newItems});
+  }
+
   render() {
+    const {favItems} = this.state;
+    
     return (
       <div className="container-fluid">
         <h1 className="text-center mt-3 mb-0">Favorites Movie App</h1>
@@ -23,7 +40,15 @@ export default class App extends React.Component {
               <List 
                 title="List Movies"
                 items={listMovies}
-                onItemClick={this.addToFavorites}
+                // onItemClick={this.addToFavorites}
+                onItemClick={this.handleItemClick}
+              />
+            </div>
+            <div className="col-sm">
+              <List 
+                title="My Favorites"
+                items={favItems}
+                onItemClick={this.handleItemClick}
               />
             </div>
           </div>
