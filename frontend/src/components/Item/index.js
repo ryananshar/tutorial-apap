@@ -10,7 +10,7 @@ export default function Item(props) {
     return (
         <button 
             type="button"
-            className="list-group-item ist-group-item-action flex-column align-items-start w-100 mb-3"
+            className="list-group-item list-group-item-action flex-column align-items-start w-100 mb-3"
             onClick={handleChange}
         >
             <div className="d-flex">
@@ -22,6 +22,7 @@ export default function Item(props) {
                         <h5 className="mb-1 font-weight-bold">
                             {judul} ({tahun})
                             <input 
+                                type="checkbox"
                                 className="ml-2"
                                 checked={checked}
                                 onChange={handleChange}
