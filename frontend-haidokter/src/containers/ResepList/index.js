@@ -10,13 +10,16 @@ class ResepList extends Component {
         super(props);
         this.state = {
             reseps: [],
+            resepFilter: [],
             isLoading: false,
             isEdit: false,
             isCreate: false,
             isDelete: false,
+            isFiltered: false,
             namaDokter: "",
             namaPasien: "",
             catatan: "",
+            filterName: "",
         };
         // this.handleClickLoading = this.handleClickLoading.bind(this);
         this.handleAddResep = this.handleAddResep.bind(this);
@@ -26,14 +29,16 @@ class ResepList extends Component {
         this.handleEditResep = this.handleEditResep.bind(this);
         this.handleSubmitEditResep = this.handleSubmitEditResep.bind(this);
         this.handleDeleteResep = this.handleDeleteResep.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
+        // this.setState({resepFilter: this.state.reseps})
     }
     
-    handleCancel (event) {
+    handleCancel(event) {
         event.preventDefault();
         this.setState({isCreate: false, isEdit: false});
     }
 
-    handleChangeField (event) {
+    handleChangeField(event) {
         const {name, value} = event.target;
         this.setState({[name]: value});
     }
@@ -53,18 +58,43 @@ class ResepList extends Component {
         });
     }
 
-    componentDidMount() {
-        // console.log("componentDidMount()");
-        this.loadData();
+    handleFilter(event) {
+        const {value} = event.target;
+        this.setState({filterName: value});
+        var keyword = this.state.filterName;
+        var query = []
+        console.log(keyword);
+        if (keyword === "") {
+            console.log("Empty Query")
+            query = this.state.reseps;
+        }
+        else {
+            this.state.reseps.forEach((resep) => {
+                if (resep.namaDokter.toLowerCase().includes(keyword.toLowerCase())) {
+                    query.push(resep);
+                    // console.log(this.state.reseps.namaDokter);
+                }
+            });
+        }
+        this.setState({resepFilter: query})
+        // console.log(this.state.resepFilter);
     }
 
-    async loadData () {
+    componentDidMount() {
+        console.log("componentDidMount()");
+        this.loadData();
+        const resepList = this.state.reseps
+        console.log(resepList)
+        this.setState({resepFilter: resepList})
+    }
+
+    async loadData() {
         try {
             const {data} = await APIConfig.get("/reseps");
             this.setState({reseps:data});
         } catch (error) {
-        alert("Oops terjadi masalah pada server");
-        console.log(error);
+            alert("Oops terjadi masalah pada server");
+            console.log(error);
         }
     }
 
@@ -96,13 +126,13 @@ class ResepList extends Component {
             const data = {
                 namaDokter : this.state.namaDokter,
                 namaPasien : this.state.namaPasien ,
-                catatan : this . state . catatan ,
+                catatan : this.state.catatan,
             };
-        await APIConfig . put ( `/resep/${ this . state . noResep }` , data );
-        this . loadData ();
+            await APIConfig.put(`/resep/${this.state.noResep}`, data);
+            this.loadData ();
         } catch(error) {
-        alert("Oops terjadi masalah pada server");
-        console.log(error);
+            alert("Oops terjadi masalah pada server");
+            console.log(error);
         }
         this.handleCancel(event);
     } 
@@ -127,25 +157,46 @@ class ResepList extends Component {
     // }
 
     render() {
-        console.log("render()");
+        // console.log("render()");
         return (
             <div className = {classes.resepList}>
                 <h1 className = {classes.title}>All Reseps</h1>
                 <Button onClick = {this.handleAddResep}variant="primary">
                     Add Resep
                 </Button>
+                <input
+                    className = {classes.textField}
+                    type = "text"
+                    placeholder = "Filter Nama Dokter"
+                    name = "filterName"
+                    value= {this.state.filterName}
+                    onChange={this.handleFilter}
+                />
                 <div>
-                    {this.state.reseps.map((resep) => (
-                        <Resep
-                            key = {resep.noResep}
-                            noResep = {resep.noResep}
-                            namaDokter = {resep.namaDokter}
-                            namaPasien = {resep.namaPasien}
-                            catatan = {resep.catatan}
-                            handleEdit = {() => this.handleEditResep(resep)}
-                            handleDelete = {() => this.handleDeleteResep(resep.noResep)}
-                        />
-                    ))}
+                    {this.state.resepFilter.length > 0 ?
+                        this.state.resepFilter.map((resep) => (
+                            <Resep
+                                key = {resep.noResep}
+                                noResep = {resep.noResep}
+                                namaDokter = {resep.namaDokter}
+                                namaPasien = {resep.namaPasien}
+                                catatan = {resep.catatan}
+                                handleEdit = {() => this.handleEditResep(resep)}
+                                handleDelete = {() => this.handleDeleteResep(resep.noResep)}
+                            />
+                        ))
+                        : this.state.reseps.map((resep) => (
+                            <Resep
+                                key = {resep.noResep}
+                                noResep = {resep.noResep}
+                                namaDokter = {resep.namaDokter}
+                                namaPasien = {resep.namaPasien}
+                                catatan = {resep.catatan}
+                                handleEdit = {() => this.handleEditResep(resep)}
+                                handleDelete = {() => this.handleDeleteResep(resep.noResep)}
+                            />
+                        ))
+                    }
                 </div>
                 <Modal 
                     show = {this.state.isCreate || this.state.isEdit} 
