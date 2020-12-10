@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import Resep from "../../components/Resep" ;
+import classes from "./styles.module.css" ;
 
 class ResepList extends Component {
     constructor(props) {
@@ -47,11 +49,25 @@ class ResepList extends Component {
     render() {
         console.log("render()");
         return (
-            <div>
-                <h1>All Reseps</h1>
-                <p>Resep 1, 2, 3, dst</p>
-                <button onClick={this.handleClickLoading}>Change State</button>
+            <div className = {classes.resepList}>
+                <h1 className = {classes.title}>All Reseps</h1>
+                <div>
+                    {this.state.reseps.map((resep) => (
+                    <Resep
+                    key = {resep.noResep}
+                    noResep = {resep.noResep}
+                    namaDokter = {resep.namaDokter}
+                    namaPasien = {resep.namaPasien}
+                    catatan = {resep.catatan}
+                    />
+                    ))}
+                </div>
             </div>
+            // <div>
+            //     <h1>All Reseps</h1>
+            //     <p>Resep 1, 2, 3, dst</p>
+            //     <button onClick={this.handleClickLoading}>Change State</button>
+            // </div>
         );
     }
 }
