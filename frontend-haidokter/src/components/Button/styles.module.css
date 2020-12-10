@@ -1,14 +1,14 @@
 .button {
-    border-radius : 4px ;
-    padding : 8px 16px ;
-    border : 1px solid white ;
-    color : white ;
-    cursor : pointer ;
-    font-weight : bold ;
+    border-radius : 4px;
+    padding : 8px 16px;
+    border : 1px solid white;
+    color : white;
+    cursor : pointer;
+    font-weight : bold;
 }
 
 .button:hover {
-    opacity : 0.9 ;
+    opacity : 0.9;
 }
 
 .primary {
