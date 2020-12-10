@@ -24,7 +24,10 @@ class ResepList extends Component {
                     catatan: "Sakit parah",
                 },
             ],
+            isLoading: false,
         };
+        this.handleClickLoading = this.handleClickLoading.bind(this);
+        // this.handleClickLoading = this.handleClickLoading.bind(this);
     }
 
     componentDidMount() {
@@ -35,12 +38,19 @@ class ResepList extends Component {
         console.log("shouldComponentUpdate()");
     }
 
+    handleClickLoading() {
+        const currentLoading = this.state.isLoading;
+        this.setState({isLoading: !currentLoading})
+        console.log(this.state.isLoading);
+    }
+
     render() {
         console.log("render()");
         return (
             <div>
                 <h1>All Reseps</h1>
                 <p>Resep 1, 2, 3, dst</p>
+                <button onClick={this.handleClickLoading}>Change State</button>
             </div>
         );
     }
