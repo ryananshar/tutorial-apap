@@ -30,7 +30,6 @@ class ResepList extends Component {
         this.handleSubmitEditResep = this.handleSubmitEditResep.bind(this);
         this.handleDeleteResep = this.handleDeleteResep.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
-        // this.setState({resepFilter: this.state.reseps})
     }
     
     handleCancel(event) {
@@ -158,6 +157,11 @@ class ResepList extends Component {
 
     render() {
         // console.log("render()");
+        let ResepsFilter = this.state.reseps.filter(
+            (resep) => {
+                return resep.namaDokter.toLowerCase().includes(this.state.filterName.toLowerCase());
+            }
+        );
         return (
             <div className = {classes.resepList}>
                 <h1 className = {classes.title}>All Reseps</h1>
@@ -173,28 +177,16 @@ class ResepList extends Component {
                     onChange={this.handleFilter}
                 />
                 <div>
-                    {this.state.resepFilter.length > 0 ?
-                        this.state.resepFilter.map((resep) => (
-                            <Resep
-                                key = {resep.noResep}
-                                noResep = {resep.noResep}
-                                namaDokter = {resep.namaDokter}
-                                namaPasien = {resep.namaPasien}
-                                catatan = {resep.catatan}
-                                handleEdit = {() => this.handleEditResep(resep)}
-                                handleDelete = {() => this.handleDeleteResep(resep.noResep)}
-                            />
-                        ))
-                        : this.state.reseps.map((resep) => (
-                            <Resep
-                                key = {resep.noResep}
-                                noResep = {resep.noResep}
-                                namaDokter = {resep.namaDokter}
-                                namaPasien = {resep.namaPasien}
-                                catatan = {resep.catatan}
-                                handleEdit = {() => this.handleEditResep(resep)}
-                                handleDelete = {() => this.handleDeleteResep(resep.noResep)}
-                            />
+                    {(this.state.reseps && ResepsFilter).map((resep) => (
+                            <Resep 
+                            key={resep.noResep}
+                            noResep={resep.noResep}
+                            namaDokter={resep.namaDokter}
+                            namaPasien={resep.namaPasien}
+                            catatan={resep.catatan}
+                            listObat={resep.listObat}
+                            handleEdit={() => this.handleEditResep(resep)}
+                            handleDelete={() => this.handleDeleteResep(resep.noResep)}/>
                         ))
                     }
                 </div>
