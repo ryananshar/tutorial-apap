@@ -12,8 +12,17 @@ mungkin berkaitan dapat dijalankan secara bersamaan sementara await adalah metho
 menuju API
 3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 8 pada Component Lifecycle
 pada pertanyaan ini.
+https://ibb.co/kDwhkDw
+https://ibb.co/Jxzx62P
 4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate,
 componentDidUpdate, componentWillReceiveProps,
 componentWillUnmount.
 Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “ use case apa saja
 yang biasanya menggunakan lifecycle method tersebut”.
+componenDidMount berfungsi untuk mencakup apa yg akan dilakukan apabila output sudah di render
+shouldComponentUpdate berfungsi sebagai logic gate untuk menentukan apakah perubahan akan ditampilkan atau tidak
+componentDidUpdate berfungsi untuk mencakup apa yg akan dilakukan apabila component sudah di update
+componentWillReceiveProps berfungsi ketika terjadi pe
+componentWillReceiveProps berfungsi ketika terjadi perubahan pada props sebelum component di render
+componentWillUnmount berfungsi ketika tepat sebelum component di un-mount.
+Fungsi di atas akan sangat berguna dalam penggunaan Hook di React.js

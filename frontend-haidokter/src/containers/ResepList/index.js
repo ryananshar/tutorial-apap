@@ -6,6 +6,7 @@ import classes from "./styles.module.css" ;
 import APIConfig from "../../api/APIConfig";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
+import ReactPaginate from 'react-paginate';
 
 class ResepList extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class ResepList extends Component {
         this.handleSubmitEditResep = this.handleSubmitEditResep.bind(this);
         this.handleDeleteResep = this.handleDeleteResep.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
+        this.handlePagination = this.handlePagination.bind(this);
     }
     
     handleCancel(event) {
@@ -95,7 +97,11 @@ class ResepList extends Component {
     async loadData() {
         try {
             const {data} = await APIConfig.get("/reseps");
-            this.setState({reseps:data});
+            const sliceData = data.slice(this.state.offset, this.state.offset + this.state.page);
+            this.setState({
+                reseps: sliceData,
+                pageCount: Math.ceil(data.length / this.state.page)
+            });
         } catch (error) {
             alert("Oops terjadi masalah pada server");
             console.log(error);
@@ -160,6 +166,18 @@ class ResepList extends Component {
     //     console.log(this.state.isLoading);
     // }
 
+    handlePagination(event) {
+        const selectedPage = event.selected;
+        const offset = selectedPage * this.state.page;
+        this.setState({
+            curPage: selectedPage,
+            offset: offset
+        }, () => {
+            this.loadData();
+        })
+    }
+
+
     render() {
         // console.log("render()");
         let ResepsFilter = this.state.reseps.filter(
@@ -195,6 +213,21 @@ class ResepList extends Component {
                             handleDelete={() => this.handleDeleteResep(resep.noResep)}/>
                         ))
                     }
+                </div>
+                <div className="d-flex justify-content-center">
+                    <ReactPaginate
+                        previousLabel={"prev"}
+                        nextLabel={"next"}
+                        breakLabel={"..."}
+                        // breakClassName={"break-me"}
+                        pageCount={this.state.pageCount}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={this.handlePagination}
+                        containerClassName={classes.pagination}
+                        // subContainerClassName={"pages pagination"}
+                        activeClassName={classes.active}
+                    />
                 </div>
                 <Modal 
                     show = {this.state.isCreate || this.state.isEdit} 
