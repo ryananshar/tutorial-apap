@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import Resep from "../../components/Resep" ;
+import Obat from "../../components/Obat";
+import ObatList from "../ObatList";
 import classes from "./styles.module.css" ;
 import APIConfig from "../../api/APIConfig";
 import Button from "../../components/Button";

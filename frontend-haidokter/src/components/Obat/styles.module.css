@@ -1,0 +1,8 @@
+.Obat {
+    border-radius : 20px;
+    background-color : blue;
+    color: white;
+    padding : 0 10px;
+    margin : 20px 10px;
+    /* box-sizing : border-box; */
+}
