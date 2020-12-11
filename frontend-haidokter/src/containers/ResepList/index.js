@@ -22,6 +22,9 @@ class ResepList extends Component {
             namaPasien: "",
             catatan: "",
             filterName: "",
+            offset: 0,
+            page: 5,
+            curPage: 0,
         };
         // this.handleClickLoading = this.handleClickLoading.bind(this);
         this.handleAddResep = this.handleAddResep.bind(this);
@@ -179,7 +182,8 @@ class ResepList extends Component {
                     onChange={this.handleFilter}
                 />
                 <div>
-                    {(this.state.reseps && ResepsFilter).map((resep) => (
+                    {
+                         (this.state.reseps && ResepsFilter).map((resep) => (
                             <Resep 
                             key={resep.noResep}
                             noResep={resep.noResep}
