@@ -2,29 +2,27 @@
 ## Authors
 * **Muhammad Ryan Anshar Haryanto** - *1806147073* - *B*
 
-## Tutorial 7
-1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi
-dari apa yang Anda jelaskan.
-    -   Pada latihan no.1 saya memutuskan untuk mengganti checkbox dengan tombol cheklist   dan close. Caranya adalah menggunakan conditional statement yang mengecek apakah item
-    yang diclick sudah pernah di-checked atau belum.
-    https://ibb.co/cc4xNMN
-    -   Pada latihan no.2 saya membuat fitur untuk menghapus semua daftar favorite. Hal ini dilakukan dengan cara memeriksa apakah objek list **favItems** kosong atau tidak. Bila terdapat item di dalam list tersebut, maka kita kan mereset state dari **favItems** tersebut menjadi list kosong
-    https://ibb.co/7RSfPbN
-    -   Pada latihan no.3 saya menggunakan 2 method yang meng-handle masing-masing list kiri dan kanan. Pada list kiri hanya dapat menambah item kedalam **favItems**, sedangkan pada list kanan hanya dapat menghapus item dari **favItems**.
-    https://ibb.co/19sjgGq
-    -   Pada latihan no.4 saya menggunakan switch dengan sudut yang melingkar. Switch ini memiliki state default false. Ketika switch ini diclick, maka akan ada method yang merubah kondisi state dari false menjadi true, sehingga akan memenuhi kondisi dari conditial statement yang akan memunculkan list favorite.
-    https://ibb.co/JxtxTpr
-    https://ibb.co/zJ1BQqm
-    -   Pada latihan no.5 memiliki konsep pengerjaan yang sama dengan latihan no.2 dimana ketika **favItems** kosong, maka akan muncul notifikasi bahwa belum ada item yang terpilih.
-    https://ibb.co/vZmQdSd
-2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props ?
-    -   State adalah data private sebuah component. Data ini hanya tersedia untuk component tersebut dan tidak bisa di akses dari component lain. Component dapat merubah statenya sendiri.
-    -   Props adalah suatu atribut/properti yang dapat kita kirim untuk membuat tampilan di html.
-3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
-    -   Untuk lebih mudah mengoper atau mengubah variabel yang ada sehingga kita dapat mengolah tampilan yang nantinya akan dilihat oleh user.
-4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
-    -   Proses rendering lebih cepat dari pengembangan menggunakan spring boot biasa.
-    -   Kemampuan untuk menggunakan kembali komponen
-5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
-    -   Terlalu terpaku pade layer view.
-    -   Tidak semua browser mendukung
+## Tutorial 8
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian
+melakukan langkah - langkah tersebut?
+- Saya hanya melakukan setState untuk mengembalikan nilai dari resep kembali menjadi kosong setiap kali proses add selesai dilakukan. Karena state dari langkah sebelumnya masih tersimpan maka perlu dikosongkan agar kolom input kembali menjadi kosong.
+2. Jelaskan fungsi dari async dan await !
+- Dari yang saya pahami dari Tutorial kali ini, asyinc mendefinisikan method yang dapat dijalankan secara asychronous seperti threading sehingga method lain yang
+mungkin berkaitan dapat dijalankan secara bersamaan sementara await adalah method yang berada di dalam suatu method async yang menunggu atau mengirim input
+menuju API
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 8 pada Component Lifecycle
+pada pertanyaan ini.
+https://ibb.co/kDwhkDw
+https://ibb.co/Jxzx62P
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate,
+componentDidUpdate, componentWillReceiveProps,
+componentWillUnmount.
+Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “ use case apa saja
+yang biasanya menggunakan lifecycle method tersebut”.
+componenDidMount berfungsi untuk mencakup apa yg akan dilakukan apabila output sudah di render
+shouldComponentUpdate berfungsi sebagai logic gate untuk menentukan apakah perubahan akan ditampilkan atau tidak
+componentDidUpdate berfungsi untuk mencakup apa yg akan dilakukan apabila component sudah di update
+componentWillReceiveProps berfungsi ketika terjadi pe
+componentWillReceiveProps berfungsi ketika terjadi perubahan pada props sebelum component di render
+componentWillUnmount berfungsi ketika tepat sebelum component di un-mount.
+Fungsi di atas akan sangat berguna dalam penggunaan Hook di React.js
